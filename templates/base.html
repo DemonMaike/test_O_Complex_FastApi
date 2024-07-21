@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <form id="weather-form" action="/get_weather" method="post">
+            <input type="text" name="city" id="city-input" placeholder="Enter the city..." required>
+            <button type="submit">Look weather</button>
+        </form>
+        {% if city_name and forecast %}
+        <div id="weather-result">
+            <h2>Weather in <span id="city-name">{{ city_name }}</span></h2>
+            <ul class="forecast-list">
+                {% for time, temp in forecast.items() %}
+                <li class="forecast-item">
+                    <span class="forecast-time">{{ time }}</span>: 
+                    <span class="forecast-temp">{{ temp }}°C</span>
+                </li>
+                {% endfor %}
+            </ul> 
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
